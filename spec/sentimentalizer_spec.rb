@@ -1,12 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Sentimentalizer" do
-  before do
+  before(:all) do
     Sentimentalizer.setup
   end
 
   it "will error without a valid input" do
     expect{Sentimentalizer.analyze("")}.to raise_error
+  end
+
+  it "should error without garbage input" do
+    expect{Sentimentalizer.analyze("w")}.not_to raise_error
   end
 
   it "will return a valid ruby hash with a valid input" do
